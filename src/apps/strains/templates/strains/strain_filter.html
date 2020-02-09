@@ -1,8 +1,29 @@
 {% load getlist %}
+{% load getparam %}
 
 <form class="mt-3">
+    <p>
+        <label for="amount">ТГК:</label>
+        <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+    </p>
+
+    <div id="slider-range"></div>
+
+    <input type="hidden"
+           name="thc_min"
+           id="thc-min"
+           data-thc="{{ thc.thc__min }}"
+           value="{{ request.GET|getparam:'thc_min' }}"
+    >
+    <input type="hidden"
+           name="thc_max"
+           id="thc-max"
+           data-thc="{{ thc.thc__max }}"
+           value="{{ request.GET|getparam:'thc_max' }}"
+    >
+
     {% for filter in filters %}
-        <div class="form-group">
+        <div class="form-group mt-3">
             <label>{{ filter.label }}</label>
             <div>
                 {% for option in filter.options %}
@@ -12,7 +33,7 @@
                                id="{{ filter.name }}-{{ option.value }}"
                                name="{{ filter.name }}"
                                value={{ option.value }}
-                               {% if option.value in request.GET|getlist:filter.name %}checked{% endif %}
+                                       {% if option.value in request.GET|getlist:filter.name %}checked{% endif %}
                         >
                         <label
                                 class="form-check-label"

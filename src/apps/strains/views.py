@@ -1,7 +1,7 @@
 from django.views.generic import DetailView
 from django_filters.views import FilterView
 from el_pagination.views import AjaxListView
-
+from django.db.models import Min, Max
 from strains.constants import STRAIN_FILTER_DATA
 from strains.filters import StrainFilter
 from strains.models import Strain
@@ -16,6 +16,7 @@ class StrainListView(FilterView, AjaxListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['filters'] = STRAIN_FILTER_DATA
+        context['thc'] = Strain.objects.all().aggregate(Min('thc'), Max('thc'))
         return context
 
 

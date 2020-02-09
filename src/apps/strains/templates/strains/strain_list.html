@@ -6,6 +6,7 @@
 {% block css %}
     {{ block.super }}
     <link href="{% sass_src 'strains/css/index.scss' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/jquery-ui.min.css' %}" rel="stylesheet" type="text/css"/>
 {% endblock css %}
 
 {% block content %}
@@ -17,7 +18,9 @@
 
 {% block js %}
     {{ block.super }}
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'strains/js/index.js' %}"></script>
     <script src="{% static 'el-pagination/js/el-pagination.js' %}"></script>
     <script>$.endlessPaginate();</script>
 {% endblock js %}
