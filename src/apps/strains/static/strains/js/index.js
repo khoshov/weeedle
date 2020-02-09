@@ -7,6 +7,7 @@ $(function () {
     const thcMaxValue = thcMaxInput.data('thc');
     sliderRange.slider({
         range: true,
+        step: 0.5,
         min: thcMinValue,
         max: thcMaxValue,
         values: [thcMinInput.val() || thcMinValue, thcMaxInput.val() || thcMaxValue],
