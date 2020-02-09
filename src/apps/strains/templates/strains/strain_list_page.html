@@ -5,6 +5,7 @@
     <div class="col-sm-6 mt-3">
         <a class="card" href="{% url 'strains:detail' strain.slug %}">
             <div class="card-body">
+                <p>{{ strain.icon }}</p>
                 <h5 class="card-title">{{ strain.name }}</h5>
                 <p class="card-text">{{ strain.get_type_display }}</p>
                 <p class="card-text">{{ strain.thc }}%</p>

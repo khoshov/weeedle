@@ -32,8 +32,8 @@ class Strain(models.Model):
         (1, '10 - 12'),
         (2, '> 12'),
     )
+    icon = models.CharField(max_length=50, default="🌿")
     name = models.CharField(max_length=255)
-    short = models.CharField(max_length=50)
     slug = models.SlugField()
     description = models.TextField(blank=True, null=True)
     type = models.IntegerField(choices=TYPES, blank=True, null=True)
@@ -44,6 +44,9 @@ class Strain(models.Model):
     crop = models.IntegerField(choices=CROP, blank=True, null=True)
     flowering = models.IntegerField(choices=FLOWERING, blank=True, null=True)
     parents = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
 
     def save(self, *args, **kwargs):
         self.slug = self.slug or slugify(self.name)
