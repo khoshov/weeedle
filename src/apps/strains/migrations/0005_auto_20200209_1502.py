@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('strains', '0004_remove_strain_short'),
+        ("strains", "0004_remove_strain_short"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='strain',
-            name='icon',
-            field=models.CharField(default='🌿', max_length=50),
+            model_name="strain",
+            name="icon",
+            field=models.CharField(default="🌿", max_length=50),
         ),
     ]

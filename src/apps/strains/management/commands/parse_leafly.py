@@ -38,40 +38,52 @@ class LeaflyStrain:
 
     @property
     def thc(self):
-        return self.strain_html.find(
-            "button", attrs={"data-testid": "cannabinoids__carrot-link-button__thc"}
-        ).find_next("div", class_="font-body").next
+        return (
+            self.strain_html.find(
+                "button", attrs={"data-testid": "cannabinoids__carrot-link-button__thc"}
+            )
+            .find_next("div", class_="font-body")
+            .next
+        )
 
     @property
     def difficulty(self):
-        difficulty_options = {'easy': 0, 'moderate': 1, 'difficult': 2}
-        difficulty = self.strain_html.find(
-            "div", text=re.compile(r"^Difficulty.?")
-        ).next_sibling.find("div", class_="bg-deep-green").text
+        difficulty_options = {"easy": 0, "moderate": 1, "difficult": 2}
+        difficulty = (
+            self.strain_html.find("div", text=re.compile(r"^Difficulty.?"))
+            .next_sibling.find("div", class_="bg-deep-green")
+            .text
+        )
         return difficulty_options[difficulty.lower()]
 
     @property
     def height(self):
-        height_options = {'< 30': 0, '30 - 78': 1, '> 78': 2}
-        height = self.strain_html.find(
-            "div", text=re.compile(r"^Height.?")
-        ).next_sibling.find("div", class_="bg-deep-green").text
+        height_options = {"< 30": 0, "30 - 78": 1, "> 78": 2}
+        height = (
+            self.strain_html.find("div", text=re.compile(r"^Height.?"))
+            .next_sibling.find("div", class_="bg-deep-green")
+            .text
+        )
         return height_options[height.lower()]
 
     @property
     def crop(self):
-        crop_options = {'0.5 - 1': 0, '1 - 3': 1, '3 - 6': 2}
-        crop = self.strain_html.find(
-            "div", text=re.compile(r"^Yield.?")
-        ).next_sibling.find("div", class_="bg-deep-green").text
+        crop_options = {"0.5 - 1": 0, "1 - 3": 1, "3 - 6": 2}
+        crop = (
+            self.strain_html.find("div", text=re.compile(r"^Yield.?"))
+            .next_sibling.find("div", class_="bg-deep-green")
+            .text
+        )
         return crop_options[crop.lower()]
 
     @property
     def flowering(self):
-        flowering_options = {'7 - 9': 0, '10 - 12': 1, '> 12': 2}
-        flowering = self.strain_html.find(
-            "div", text=re.compile(r"^Flowering.?")
-        ).next_sibling.find("div", class_="bg-deep-green").text
+        flowering_options = {"7 - 9": 0, "10 - 12": 1, "> 12": 2}
+        flowering = (
+            self.strain_html.find("div", text=re.compile(r"^Flowering.?"))
+            .next_sibling.find("div", class_="bg-deep-green")
+            .text
+        )
         return flowering_options[flowering.lower()]
 
     @property
@@ -82,7 +94,7 @@ class LeaflyStrain:
         parent_right = self.strain_html.find(
             "div", class_="lineage__right-parent"
         ).next.next.next.next.next
-        return f'{parent_left} x {parent_right}'
+        return f"{parent_left} x {parent_right}"
 
     @property
     def strain_data(self):
@@ -101,7 +113,7 @@ class LeaflyStrain:
 
 
 class Command(BaseCommand):
-    help = 'Parse leafly popular strains'
+    help = "Parse leafly popular strains"
 
     @staticmethod
     def get_strains():

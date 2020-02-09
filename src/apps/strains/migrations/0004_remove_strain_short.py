@@ -6,12 +6,9 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('strains', '0003_strain_icon'),
+        ("strains", "0003_strain_icon"),
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='strain',
-            name='short',
-        ),
+        migrations.RemoveField(model_name="strain", name="short",),
     ]

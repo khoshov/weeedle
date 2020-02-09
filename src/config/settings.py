@@ -35,22 +35,24 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    # Django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    # Third party apps
     'crispy_forms',
     'django_countries',
-    'el_pagination',
     'django_filters',
+    'el_pagination',
     'sass_processor',
-
-    'core.apps.CoreConfig',
-    'strains.apps.StrainsConfig',
+    # Project apps
     'censorship.apps.CensorshipConfig',
+    'core.apps.CoreConfig',
+    'products.apps.ProductsConfig',
+    'strains.apps.StrainsConfig',
 ]
 
 MIDDLEWARE = [

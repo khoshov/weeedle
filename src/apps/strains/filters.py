@@ -15,19 +15,28 @@ class StrainFilter(django_filters.FilterSet):
 
     class Meta:
         model = Strain
-        fields = ['type', 'thc_min', 'thc_max', 'difficulty', 'height', 'crop', 'flowering', 'search']
+        fields = [
+            "type",
+            "thc_min",
+            "thc_max",
+            "difficulty",
+            "height",
+            "crop",
+            "flowering",
+            "search",
+        ]
 
     # noinspection PyMethodMayBeStatic
     def search_filter(self, queryset, name, value):
-        lookup = '__'.join([name, 'icontains'])
+        lookup = "__".join([name, "icontains"])
         return queryset.filter(**{lookup: value})
 
     # noinspection PyMethodMayBeStatic
     def thc_min_filter(self, queryset, name, value):
-        lookup = '__'.join([name, 'gte'])
+        lookup = "__".join([name, "gte"])
         return queryset.filter(**{lookup: value})
 
     # noinspection PyMethodMayBeStatic
     def thc_max_filter(self, queryset, name, value):
-        lookup = '__'.join([name, 'lte'])
+        lookup = "__".join([name, "lte"])
         return queryset.filter(**{lookup: value})

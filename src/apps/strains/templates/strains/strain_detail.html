@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div class="breadcrumbs">
+        <a href="{% url 'strains:list' %}">Все сорта</a> / <span class="text-secondary">{{ strain.name }}</span>
+    </div>
     <h1>{{ strain.name }}</h1>
+    <p>{{ strain.icon }}</p>
     <p>{{ strain.get_type_display }}</p>
     <p>ТГК: {{ strain.thc }}%</p>
     <p>{{ strain.description }}</p>
