@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load el_pagination_tags %}
+{% load static %}
+{% load sass_tags %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% sass_src 'strains/css/index.scss' %}" rel="stylesheet" type="text/css"/>
+{% endblock css %}
+
+{% block content %}
+    {% include "strains/strain_filter.html" %}
+    <div class="row mb-3">
+        {% include "strains/strain_list_page.html" %}
+    </div>
+{% endblock content %}
+
+{% block js %}
+    {{ block.super }}
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="{% static 'el-pagination/js/el-pagination.js' %}"></script>
+    <script>$.endlessPaginate();</script>
+{% endblock js %}
