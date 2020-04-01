@@ -24,7 +24,7 @@ class CensorshipForm(forms.Form):
         adult = cleaned_data.get("adult")
 
         if country == "RU":
-            self.add_error("country", "Для вашего регина доступ на сайт ограничен")
+            self.add_error("country", "Для вашего региона доступ на сайт ограничен")
 
         if not adult:
             self.add_error(
