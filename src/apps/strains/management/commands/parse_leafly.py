@@ -90,11 +90,20 @@ class LeaflyStrain:
     def parents(self):
         parent_left = self.strain_html.find(
             "div", class_="lineage__left-parent"
-        ).next.next.next.next.next
-        parent_right = self.strain_html.find(
-            "div", class_="lineage__right-parent"
-        ).next.next.next.next.next
-        return f"{parent_left} x {parent_right}"
+        )
+        if parent_left:
+            parent_left = parent_left.next.next.next.next.next
+            parent_right = self.strain_html.find(
+                "div", class_="lineage__right-parent"
+            ).next.next.next.next.next
+
+            result = f"{parent_left} x {parent_right}"
+        else:
+            result = self.strain_html.find(
+                "div", class_="lineage__center-parent"
+            ).next.next.next.next.next
+
+        return result
 
     @property
     def strain_data(self):
