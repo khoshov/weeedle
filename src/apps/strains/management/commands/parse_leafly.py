@@ -16,13 +16,13 @@ URL = urljoin(BASE_URL, POPULAR_STRAINS_URL)
 class LeaflyStrain:
     def __init__(self, strain_html):
         self.strain_html = strain_html
-        self.name = self.strain_html.find("div", class_="strain-tile__name").text
+        self.name = self.strain_html.find("h1", class_="text-hero").text
 
     def safe_parse(self, field):
         try:
             return getattr(self, field)
         except Exception as e:
-            print(f"Can't parse {field} field. {e}")
+            print(f"{self.name}. Can't parse {field} field. {e}")
 
     @property
     def description(self):
@@ -129,7 +129,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         strains = self.get_strains()
-
         for strain in strains:
             strain_html = self.get_strain_html(strain)
             strain = LeaflyStrain(strain_html)
