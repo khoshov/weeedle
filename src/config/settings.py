@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'products.apps.ProductsConfig',
     'strains.apps.StrainsConfig',
+    # libs
+    'libs.ipinfo',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +65,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'libs.ipinfo.middleware.IPInfoMiddleware',
     'censorship.middleware.CensorshipMiddleware',
 ]
 
