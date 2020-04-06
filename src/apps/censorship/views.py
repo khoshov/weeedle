@@ -31,3 +31,8 @@ class CensorshipFormView(FormView):
             "allowed", "true", expires=expires.strftime("%a, %d-%b-%Y %H:%M:%S GMT")
         )
         return response
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['disable_search'] = True
+        return context
