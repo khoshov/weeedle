@@ -1,5 +1,4 @@
-from .utils import get_request_info
-from .conf import settings
+from .utils import get_region_info
 
 
 class IPInfoMiddleware:
@@ -7,13 +6,18 @@ class IPInfoMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        ipinfo = get_request_info(request)
-        if ipinfo is not None:
-            # Для тестирования региона
-            overwrite_region = request.COOKIES.get('region')
-            if overwrite_region:
-                ipinfo.region = overwrite_region
+        if request.COOKIES.get('geoip_region') is not None:
+            region = request.COOKIES.get('geoip_region', None)
+        else:
+            region = get_region_info(request)
 
-            request.META[settings.IPINFO_META_KEY] = ipinfo
+        if region:
+            # Для тестирования региона
+            overwrite_region = request.COOKIES.get('geoip_region')
+            if overwrite_region:
+                region = overwrite_region
+
+        request.META['region'] = region if region else None
+
         response = self.get_response(request)
         return response
