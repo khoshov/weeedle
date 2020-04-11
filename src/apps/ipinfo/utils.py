@@ -21,7 +21,7 @@ def get_region_info(request):
         try:
             response = reader.city(ip)
 
-            region = response.subdivisions[0].name
+            region = response.country.iso_code
 
             return region
         except (AddressNotFoundError, IndexError):

@@ -20,9 +20,9 @@ class CensorshipFormView(FormView):
         context['disable_search'] = True
 
         if region_info:
-            context['country'] = region_info.country
+            context['country'] = region_info
             form = context['form']
-            form.initial['country'] = region_info.country
+            form.initial['country'] = region_info
 
         return context
 
