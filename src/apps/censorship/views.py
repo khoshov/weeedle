@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 
-from ipinfo.utils import get_request_info
+from ipinfo.utils import get_region_info
 from .forms import CensorshipForm
 
 
@@ -15,13 +15,14 @@ class CensorshipFormView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        region_info = get_region_info(self.request)
 
         context['disable_search'] = True
 
-        info = get_request_info(self.request)
-        if info:
+        if region_info:
+            context['country'] = region_info.country
             form = context['form']
-            form.initial['country'] = info.country
+            form.initial['country'] = region_info.country
 
         return context
 
