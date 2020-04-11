@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 
-from libs.ipinfo.utils import get_request_info
+from ipinfo.utils import get_request_info
 from .forms import CensorshipForm
 
 

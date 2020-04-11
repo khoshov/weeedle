@@ -9,15 +9,15 @@
 
     Установка
     ---------
-    Добавить "libs.ipinfo" в INSTALLED_APPS:
+    Добавить "ipinfo" в INSTALLED_APPS:
         INSTALLED_APPS = [
             ...
-            'libs.ipinfo',
+            'ipinfo',
         ]
 
     Опционально, для добавления данных в request.META:
         MIDDLEWARE = [
-            'libs.ipinfo.middleware.IPInfoMiddleware',
+            'ipinfo.middleware.IPInfoMiddleware',
         ]
 
     Настройки
@@ -42,16 +42,16 @@
 
     Пример: получение информации по IP
     ----------------------------------
-    from libs.ipinfo.utils import get_info
+    from ipinfo.utils import get_info
     info = get_info('195.144.219.29')
     info.city == 'Tolyatti'
 
     Пример: получение информации из объекта request (необходим модуль django-ipware)
     -----------------------------------------------
-    from libs.ipinfo.utils import get_request_info
+    from ipinfo.utils import get_request_info
     info = get_request_info(request)
     info.city == 'Tolyatti'
 
 """
 
-default_app_config = 'libs.ipinfo.apps.Config'
+default_app_config = 'ipinfo.apps.Config'

@@ -53,8 +53,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'products.apps.ProductsConfig',
     'strains.apps.StrainsConfig',
-    # libs
-    'ipinfo',
+    'ipinfo.apps.IPInfoConfig',
 ]
 
 MIDDLEWARE = [
