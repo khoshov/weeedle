@@ -1,3 +1,6 @@
+import os
+
+from django.conf import settings
 from geoip2.database import Reader
 from geoip2.errors import AddressNotFoundError
 from ipware.ip import get_real_ip
@@ -12,7 +15,8 @@ def get_region_info(request):
     region = None
 
     if ip is not None and isinstance(ip, str) and is_valid_ip(ip):
-        reader = Reader('apps/ipinfo/GeoLite2-City.mmdb')
+        db_path = os.path.join(settings.BASE_DIR, 'apps/ipinfo/GeoLite2-City.mmdb')
+        reader = Reader(db_path)
 
         try:
             response = reader.city(ip)
@@ -20,7 +24,7 @@ def get_region_info(request):
             region = response.subdivisions[0].name
 
             return region
-        except (AddressNotFoundError, IndexError) as e:
+        except (AddressNotFoundError, IndexError):
             pass
 
     return region
