@@ -12,7 +12,7 @@ def get_region_info(request):
     region = None
 
     if ip is not None and isinstance(ip, str) and is_valid_ip(ip):
-        reader = Reader('libs/geoip2/GeoLite2-City.mmdb')
+        reader = Reader('ipinfo/GeoLite2-City.mmdb')
 
         try:
             response = reader.city(ip)
