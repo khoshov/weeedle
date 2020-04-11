@@ -30,6 +30,7 @@ ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
     "100.90.97.118",
+    "khoshov.pythonanywhere.com",
 ]
 
 # Application definition
