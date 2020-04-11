@@ -8,5 +8,6 @@ django-el-pagination==3.3.0
 django-filter==2.2.0
 django-ipware==2.1.0
 django-sass-processor==0.8
+geoip2==3.0.0
 libsass==0.19.4
 requests==2.23.0
