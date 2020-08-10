@@ -3,14 +3,14 @@ import os
 from django.conf import settings
 from geoip2.database import Reader
 from geoip2.errors import AddressNotFoundError
-from ipware.ip import get_real_ip
+from ipware.ip import get_client_ip
 from ipware.utils import is_valid_ip
 
 
 def get_region_info(request):
     if not request:
         return None
-    ip = get_real_ip(request)
+    ip = get_client_ip(request)
 
     region = None
 

@@ -1,3 +1,5 @@
-$(document).ready(function() {
-    $('#id_country').select2();
+$(document).ready(function () {
+    $('#id_country').selectize({
+        placeholder: 'Введите название вашей страны',
+    });
 });
